@@ -36,9 +36,9 @@ namespace EF_lesson_3_3
                     {
                         Console.WriteLine("{0} - {1}", pl.Name, pl.Position);
                     }
-                    Console.WriteLine();
-                    Console.ReadLine();
+                    Console.WriteLine();   
                 }
+                Console.ReadLine();
             }
         }
     }
