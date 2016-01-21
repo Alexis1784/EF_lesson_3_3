@@ -25,6 +25,14 @@ namespace EF_lesson_3_3
                 db.Players.AddRange(new List<Player> { pl1, pl2, pl3 });
                 db.SaveChanges();
 
+                //редактирование
+                t2.Name = "Реал М."; // изменим название
+                db.Entry(t2).State = EntityState.Modified;
+                // переведем игрока из одной команды в другую
+                pl3.Team = t2;
+                db.Entry(pl3).State = EntityState.Modified;
+                db.SaveChanges();
+
                 // вывод 
                 foreach (Player pl in db.Players.Include(p => p.Team))
                     Console.WriteLine("{0} - {1}", pl.Name, pl.Team != null ? pl.Team.Name : "");
