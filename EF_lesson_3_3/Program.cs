@@ -33,6 +33,8 @@ namespace EF_lesson_3_3
                 db.Entry(pl3).State = EntityState.Modified;
                 db.SaveChanges();
 
+                db.Database.ExecuteSqlCommand("ALTER TABLE dbo.Players ADD CONSTRAINT Players_Teams FOREIGN KEY (TeamId) REFERENCES dbo.Teams (Id) ON DELETE SET NULL");
+
                 // вывод 
                 foreach (Player pl in db.Players.Include(p => p.Team))
                     Console.WriteLine("{0} - {1}", pl.Name, pl.Team != null ? pl.Team.Name : "");
