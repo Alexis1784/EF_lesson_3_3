@@ -33,7 +33,15 @@ namespace EF_lesson_3_3
                 db.Entry(pl3).State = EntityState.Modified;
                 db.SaveChanges();
 
-                db.Database.ExecuteSqlCommand("ALTER TABLE dbo.Players ADD CONSTRAINT Players_Teams FOREIGN KEY (TeamId) REFERENCES dbo.Teams (Id) ON DELETE SET NULL");
+                //db.Database.ExecuteSqlCommand("ALTER TABLE dbo.Players ADD CONSTRAINT Players_Teams FOREIGN KEY (TeamId) REFERENCES dbo.Teams (Id) ON DELETE SET NULL");
+
+                //удаление игрока
+                Player pl_toDelete = db.Players.First(p => p.Id == 28);
+                db.Players.Remove(pl_toDelete);
+                // удаление команды     
+                Team t_toDelete = db.Teams.First();
+                db.Teams.Remove(t_toDelete);
+                db.SaveChanges();
 
                 // вывод 
                 foreach (Player pl in db.Players.Include(p => p.Team))
